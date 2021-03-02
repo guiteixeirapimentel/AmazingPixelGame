@@ -46,6 +46,11 @@ public:
         return {cX * scalar, cY * scalar};
     }
 
+    Vector2D<T> operator/(const T scalar) const
+    {
+        return {cX / scalar, cY / scalar};
+    }
+
     Vector2D<T> operator+=(const Vector2D<T> rhs)
     {
         cX += rhs.cX;
@@ -64,6 +69,13 @@ public:
     {
         cX *= scalar;
         cY *= scalar;
+        return *this;
+    }
+
+    Vector2D<T> operator/=(const T scalar)
+    {
+        cX /= scalar;
+        cY /= scalar;
         return *this;
     }
 

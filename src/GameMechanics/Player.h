@@ -24,12 +24,16 @@ public:
     void MoveBottomLeft();
     void MoveBottomRight();
 
+    inline Vector2DF GetPosition() const {return cPos;}
+    inline float GetRadius() const {return static_cast<float>(cRadius);}
+
 private:
     Vector2DF cPos;
     Vector2DF cVel;
     Vector2DF cAcel;
 
     const float cWalkingAccel = 3000.0f;
+    const int cRadius = 2;
     bool cMoving = false;
     float cDirMovingDegrees = 0;
 };

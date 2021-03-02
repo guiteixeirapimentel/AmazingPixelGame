@@ -32,7 +32,7 @@ void Player::Update(float dt)
 
 void Player::Render(Graphics &gfx) const
 {
-    gfx.DrawCircle(2, int(cPos.cX), int(cPos.cY), {128, 180, 96, 255});
+    gfx.DrawCircle(cRadius, int(cPos.cX), int(cPos.cY), {128, 180, 96, 255});
 }
 
 void Player::MoveTop()
