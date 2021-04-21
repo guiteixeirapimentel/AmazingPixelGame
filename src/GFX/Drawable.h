@@ -17,6 +17,7 @@ public:
 
 protected:
     Vector2DF cPosOffset;
+    float cDistanceDepth = 1.0f;
 };
 
 #endif

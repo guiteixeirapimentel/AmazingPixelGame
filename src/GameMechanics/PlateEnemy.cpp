@@ -32,8 +32,8 @@ void PlateEnemy::Update(float dt)
 
 void PlateEnemy::Render(Graphics &gfx) const
 {
-    const Vector2DF finalPos = cPosition - cPosOffset;
-    const Vector2DF finalPos2 = cPosition2 - cPosOffset;
+    const Vector2DF finalPos = cPosition - cPosOffset/cDistanceDepth;
+    const Vector2DF finalPos2 = cPosition2 - cPosOffset/cDistanceDepth;
 
     gfx.DrawLine(finalPos.cX, finalPos.cY, finalPos2.cX, finalPos2.cY, cColor);
 }

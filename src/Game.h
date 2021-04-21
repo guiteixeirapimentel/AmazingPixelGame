@@ -9,6 +9,7 @@
 #include "GameMechanics/PlateEnemy.h"
 
 #include "GameMechanics/Camera/Camera.h"
+#include "GameMechanics/MapBackground.h"
 
 #include <vector>
 
@@ -29,6 +30,8 @@ private:
     Graphics cGraphics;
     Keyboard& cKeyboard;
     Camera cCam;
+
+    MapBackground cMapBackground;
 
     Player cPlayer;
     std::vector<Enemy*> cEnemysPointer;

@@ -59,17 +59,21 @@ void Game::Update()
 
         if (pEnemy->IsColliding(cPlayer))
         {
-            cPlayer.ResetPlayer({400.0f, 400.0f});
+            //cPlayer.ResetPlayer({400.0f, 400.0f});
         }
     }
 
     cPlayer.Update();
 
     cCam.SetPosition(cPlayer.GetPosition());
+
+    cMapBackground.Update(cPlayer);
 }
 
 void Game::Render()
 {
+    cMapBackground.Render(cCam);
+
     cCam.Render(cPlayer);
 
     for (Enemy *pEnemy : cEnemysPointer)

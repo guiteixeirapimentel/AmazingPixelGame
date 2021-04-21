@@ -8,7 +8,7 @@ public:
     Camera(const Vector2DF& startPosition, Graphics& gfx):cRefGFX(gfx),cPosition(startPosition){};
     ~Camera(){}
 
-    void Render(Drawable& refDrawable)
+    void Render(Drawable& refDrawable) const
     {
         Vector2DF v = {float(cRefGFX.GetWidth()), float(cRefGFX.GetHeight())}; 
         refDrawable.SetPosOffset(cPosition - v/2);

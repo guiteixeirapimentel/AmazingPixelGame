@@ -50,7 +50,7 @@ void RadiiEnemy::Update(float dt)
 
 void RadiiEnemy::Render(Graphics &gfx) const
 {
-    const Vector2DF finalPos = cPosition - cPosOffset;
+    const Vector2DF finalPos = cPosition - cPosOffset/cDistanceDepth;
 
     gfx.DrawCircle(static_cast<int>(cRadius), finalPos.cX, finalPos.cY, cColor);
 }
