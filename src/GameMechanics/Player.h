@@ -2,15 +2,16 @@
 #define PLAYER_H
 #include "../GFX/Graphics.h"
 #include "../Physics/Vector2D.h"
+#include "../GFX/Drawable.h"
 
-class Player
+class Player : public Drawable
 {
 public:
     Player(const Vector2DF& posInicial, const Vector2DF& velInicial);
     ~Player();
 
     void Update(float dt = Graphics::cMiliPerFrame/1000.0f);
-    void Render(Graphics &gfx) const;
+    void Render(Graphics &gfx) const override;
 
     void ApplyAcceleration(const Vector2DF& accel);
 

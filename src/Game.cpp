@@ -4,7 +4,8 @@
 Game::Game(Keyboard &kbd)
     : cKeyboard(kbd),
       cGraphics(800, 600),
-      cPlayer({cGraphics.GetWidth() / 2.0f, cGraphics.GetHeight() / 2.0f}, {})
+      cPlayer({cGraphics.GetWidth() / 2.0f, cGraphics.GetHeight() / 2.0f}, {}),
+      cCam({400.0f, 300.0f}, cGraphics)
 {
     const int nEnemys = 1;
 
@@ -63,15 +64,17 @@ void Game::Update()
     }
 
     cPlayer.Update();
+
+    cCam.SetPosition(cPlayer.GetPosition());
 }
 
 void Game::Render()
 {
-    cPlayer.Render(cGraphics);
+    cCam.Render(cPlayer);
 
     for (Enemy *pEnemy : cEnemysPointer)
     {
-        pEnemy->Render(cGraphics);
+        cCam.Render(*pEnemy);
     }
 }
 

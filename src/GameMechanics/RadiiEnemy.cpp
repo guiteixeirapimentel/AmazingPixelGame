@@ -50,7 +50,9 @@ void RadiiEnemy::Update(float dt)
 
 void RadiiEnemy::Render(Graphics &gfx) const
 {
-    gfx.DrawCircle(static_cast<int>(cRadius), cPosition.cX, cPosition.cY, cColor);
+    const Vector2DF finalPos = cPosition - cPosOffset;
+
+    gfx.DrawCircle(static_cast<int>(cRadius), finalPos.cX, finalPos.cY, cColor);
 }
 
 bool RadiiEnemy::IsColliding(const Player &player) const

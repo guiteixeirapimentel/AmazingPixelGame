@@ -8,6 +8,8 @@
 #include "GameMechanics/RadiiEnemy.h"
 #include "GameMechanics/PlateEnemy.h"
 
+#include "GameMechanics/Camera/Camera.h"
+
 #include <vector>
 
 class Game
@@ -26,6 +28,7 @@ private:
 private:
     Graphics cGraphics;
     Keyboard& cKeyboard;
+    Camera cCam;
 
     Player cPlayer;
     std::vector<Enemy*> cEnemysPointer;

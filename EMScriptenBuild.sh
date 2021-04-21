@@ -1,4 +1,5 @@
 #!/bin/bash
+clear
 echo "Build Started"
 
 readarray -td '' list < <(find . -type f -name "*.cpp" -print0)

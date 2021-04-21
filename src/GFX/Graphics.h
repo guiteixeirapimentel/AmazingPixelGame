@@ -9,6 +9,8 @@
 
 #include <SDL/SDL.h>
 
+#include "Drawable.h"
+
 class Graphics
 {
 public:

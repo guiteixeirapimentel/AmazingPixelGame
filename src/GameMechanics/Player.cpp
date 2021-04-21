@@ -32,7 +32,8 @@ void Player::Update(float dt)
 
 void Player::Render(Graphics &gfx) const
 {
-    gfx.DrawCircle(cRadius, int(cPos.cX), int(cPos.cY), {128, 180, 96, 255});
+    const Vector2DF finalPos = cPos - cPosOffset;
+    gfx.DrawCircle(cRadius, int(finalPos.cX), int(finalPos.cY), {128, 180, 96, 255});
 }
 
 void Player::MoveTop()

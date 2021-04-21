@@ -32,7 +32,10 @@ void PlateEnemy::Update(float dt)
 
 void PlateEnemy::Render(Graphics &gfx) const
 {
-    gfx.DrawLine(cPosition.cX, cPosition.cY, cPosition2.cX, cPosition2.cY, cColor);
+    const Vector2DF finalPos = cPosition - cPosOffset;
+    const Vector2DF finalPos2 = cPosition2 - cPosOffset;
+
+    gfx.DrawLine(finalPos.cX, finalPos.cY, finalPos2.cX, finalPos2.cY, cColor);
 }
 
 bool PlateEnemy::IsColliding(const Player &player) const
