@@ -79,6 +79,14 @@ public:
         return *this;
     }
 
+    Vector2D<T> operator-() const{
+        Vector2D<T> res;
+        res.cX = -cX;
+        res.cY = -cY;
+        
+        return res;
+    }
+
 public:
     T cX;
     T cY;

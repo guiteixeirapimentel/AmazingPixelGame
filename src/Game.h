@@ -4,7 +4,9 @@
 #include "Controls/Keyboard.h"
 
 #include "GameMechanics/Player.h"
+#include "GameMechanics/Enemy.h"
 #include "GameMechanics/RadiiEnemy.h"
+#include "GameMechanics/PlateEnemy.h"
 
 #include <vector>
 
@@ -26,7 +28,7 @@ private:
     Keyboard& cKeyboard;
 
     Player cPlayer;
-    std::vector<RadiiEnemy> cRadiiEnemys;
+    std::vector<Enemy*> cEnemysPointer;
 };
 
 #endif

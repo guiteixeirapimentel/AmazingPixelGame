@@ -26,6 +26,13 @@ public:
 
     inline Vector2DF GetPosition() const {return cPos;}
     inline float GetRadius() const {return static_cast<float>(cRadius);}
+    inline Vector2DF GetVelocity() const {return cVel;}
+
+    inline void ResetPlayer(const Vector2DF& newPos){
+        cVel = {0.0f, 0.0f};
+        cAcel = {0.0f, 0.0f};
+        cPos = newPos;
+    }
 
 private:
     Vector2DF cPos;
@@ -33,7 +40,7 @@ private:
     Vector2DF cAcel;
 
     const float cWalkingAccel = 3000.0f;
-    const int cRadius = 2;
+    const int cRadius = 5;
     bool cMoving = false;
     float cDirMovingDegrees = 0;
 };

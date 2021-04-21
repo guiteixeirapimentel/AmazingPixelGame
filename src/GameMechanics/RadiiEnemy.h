@@ -10,6 +10,10 @@ public:
     ~RadiiEnemy();
 
     void Update(float dt = 1.0f/60.0f) override;
+    void Act(Player& refPlayer) override
+    {
+        cPAI->Act(refPlayer);
+    }
     void Render(Graphics& gfx) const override;
 
     bool IsColliding(const Player& player) const override;

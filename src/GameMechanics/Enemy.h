@@ -2,11 +2,12 @@
 #define ENEMY_H
 #include "../GFX/Graphics.h"
 #include "../Physics/Vector2D.h"
+#include "EnemyAI.h"
 
 class Enemy
 {
 public:
-    Enemy(const Vector2DF &pos, const Vector2DF &vel, float dragCoeff = 0.93f) : cPosition(pos), cVelocity(vel), cAcceleration({0.0f, 0.0f}), cDragCoeff(dragCoeff) {}
+    Enemy(const Vector2DF &pos, const Vector2DF &vel, float dragCoeff = 0.93f) : cPosition(pos), cVelocity(vel), cAcceleration({0.0f, 0.0f}), cDragCoeff(dragCoeff), cPAI(nullptr) {}
     ~Enemy() {}
 
     virtual void Update(float dt = 1.0f / 60.0f)
@@ -17,12 +18,15 @@ public:
 
         cAcceleration = {0.0f, 0.0f};
     }
+    virtual void Act(Player& refPlayer) = 0;
     virtual void Render(Graphics &gfx) const = 0;
     virtual bool IsColliding(const class Player &player) const { return false; }
 
-    virtual void AddAcceleration(const Vector2DF& addedAccel){ cAcceleration += addedAccel; }
+    virtual void AddAcceleration(const Vector2DF &addedAccel) { cAcceleration += addedAccel; }
+    virtual void AddAcceleration2(const Vector2DF &addedAccel){};
 
-    inline Vector2DF GetPosition() const {return cPosition;}
+    virtual inline Vector2DF GetPosition() const { return cPosition; }
+    virtual inline Vector2DF GetSecondPosition() const { return cPosition; }
 
 protected:
     Vector2DF cPosition;
@@ -30,6 +34,8 @@ protected:
     Vector2DF cAcceleration;
 
     float cDragCoeff;
+
+    EnemyAI *cPAI;
 };
 
 #endif

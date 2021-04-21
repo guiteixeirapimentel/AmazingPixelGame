@@ -1,5 +1,6 @@
 #include "RadiiEnemy.h"
 #include "Player.h"
+#include "RadiiAI.h"
 
 RadiiEnemy::RadiiEnemy(const Vector2DF &pos, const Vector2DF &vel, float minRadius, float maxRadius, float period, float dragCoef, const Graphics::Color &color)
     : Enemy(pos, vel, dragCoef),
@@ -11,10 +12,16 @@ RadiiEnemy::RadiiEnemy(const Vector2DF &pos, const Vector2DF &vel, float minRadi
       cRateOfChangeRadius((cMaxRadius - cMinRadius / cPeriod)),
       cColor(color)
 {
+    cPAI = new RadiiAI(*this);
 }
 
 RadiiEnemy::~RadiiEnemy()
 {
+    if(cPAI)
+    {
+        delete cPAI;
+        cPAI = nullptr;
+    }
 }
 
 void RadiiEnemy::Update(float dt)

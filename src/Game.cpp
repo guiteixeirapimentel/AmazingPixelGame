@@ -15,12 +15,27 @@ Game::Game(Keyboard &kbd)
 
         const Vector2DF pos = {static_cast<float>(rand() % 500) + 100 - maxRadius, static_cast<float>(rand() % 400) + 100 - maxRadius};
 
-        cRadiiEnemys.emplace_back(RadiiEnemy(pos, {0.0f, 0.0f}, minRadius, maxRadius));
+        auto pEnemy = new RadiiEnemy(pos, {0.0f, 0.0f}, minRadius, maxRadius);
+        cEnemysPointer.push_back(pEnemy);
     }
+
+    auto pEnemy = new PlateEnemy({120.0f, 120.0f}, {170.0f, 150.0f}, {0.0f, 0.0f});
+    cEnemysPointer.push_back(pEnemy);
 }
 
 Game::~Game()
 {
+    for (size_t i = 0; i < cEnemysPointer.size(); i++)
+    {
+        auto pEnemy = cEnemysPointer[i];
+        if (pEnemy)
+        {
+            delete pEnemy;
+            pEnemy = nullptr;
+        }
+    }
+
+    cEnemysPointer.clear();
 }
 
 void Game::Tick()
@@ -35,15 +50,15 @@ void Game::Tick()
 
 void Game::Update()
 {
-    for (RadiiEnemy& enemy : cRadiiEnemys)
+    for (Enemy *pEnemy : cEnemysPointer)
     {
-        enemy.AddAcceleration((cPlayer.GetPosition() - enemy.GetPosition()) * 30.0f);
+        pEnemy->Act(cPlayer);
 
-        enemy.Update();
+        pEnemy->Update();
 
-        if (enemy.IsColliding(cPlayer))
+        if (pEnemy->IsColliding(cPlayer))
         {
-            //std::cout << "COLIDINDO" << std::endl;
+            cPlayer.ResetPlayer({400.0f, 400.0f});
         }
     }
 
@@ -53,9 +68,10 @@ void Game::Update()
 void Game::Render()
 {
     cPlayer.Render(cGraphics);
-    for (RadiiEnemy& enemy : cRadiiEnemys)
+
+    for (Enemy *pEnemy : cEnemysPointer)
     {
-        enemy.Render(cGraphics);
+        pEnemy->Render(cGraphics);
     }
 }
 

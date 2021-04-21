@@ -28,6 +28,16 @@ void Graphics::PutPixel(int x, int y, const Color &color)
   reinterpret_cast<Uint32 *>(cPScreen->pixels)[y * cWidth + x] = SDL_MapRGBA(cPScreen->format, color.r, color.g, color.b, color.a);
 }
 
+void Graphics::PutPixelSafe(int x, int y, const Color &color)
+{
+  if(x < 0 || x>=cWidth || y <0 || y>= cHeight)
+  {
+    return;
+  }
+
+  reinterpret_cast<Uint32 *>(cPScreen->pixels)[y * cWidth + x] = SDL_MapRGBA(cPScreen->format, color.r, color.g, color.b, color.a);
+}
+
 void Graphics::Init()
 {
   cStartRender = std::chrono::steady_clock::now();
@@ -47,7 +57,7 @@ void Graphics::Present(bool vsync)
 
   if (vsync && renderTime < cMiliPerFrame)
   {
-    std::cout << renderTime << std::endl;
+    //std::cout << renderTime << std::endl;
     SDL_Delay(cMiliPerFrame - renderTime);
   }
 
@@ -71,7 +81,7 @@ void Graphics::DrawLine(int x1, int y1, int x2, int y2, const Color &color)
 
     for (int j = y1; j <= y2; j++)
     {
-      PutPixel(x1, j, color);
+      PutPixelSafe(x1, j, color);
     }
 
     return;
@@ -87,7 +97,7 @@ void Graphics::DrawLine(int x1, int y1, int x2, int y2, const Color &color)
 
     for (int i = x1; i <= x2; i++)
     {
-      PutPixel(i, y2, color);
+      PutPixelSafe(i, y2, color);
     }
 
     return;
@@ -111,7 +121,7 @@ void Graphics::DrawLine(int x1, int y1, int x2, int y2, const Color &color)
     for (int i = x1; i < x2; i++)
     {
       const int y = dydx * i + b;
-      PutPixel(i, y, color);
+      PutPixelSafe(i, y, color);
     }
   }
   else // se dxdy for menor, desenha linha considerando funcao de y
@@ -128,7 +138,7 @@ void Graphics::DrawLine(int x1, int y1, int x2, int y2, const Color &color)
     for (int j = y1; j < y2; j++)
     {
       const int x = (j - b) / dydx;
-      PutPixel(x, j, color);
+      PutPixelSafe(x, j, color);
     }
   }
 }
@@ -147,7 +157,7 @@ void Graphics::DrawFilledRectangle(int xMin, int yMin, int xMax, int yMax, const
   {
     for (int i = xMin; i < xMax; i++)
     {
-      PutPixel(i, j, color);
+      PutPixelSafe(i, j, color);
     }
   }
 }
@@ -159,8 +169,8 @@ void Graphics::DrawCircle(int radius, int xCenter, int yCenter, const Color &col
     const float y1 = yCenter + sqrt(radius * radius - (x - xCenter) * (x - xCenter));
     const float y2 = yCenter - sqrt(radius * radius - (x - xCenter) * (x - xCenter));
 
-    PutPixel(x, y1, color);
-    PutPixel(x, y2, color);
+    PutPixelSafe(x, y1, color);
+    PutPixelSafe(x, y2, color);
   }
 
   for (int y = -radius + yCenter; y <= radius + yCenter; y++)
@@ -168,7 +178,7 @@ void Graphics::DrawCircle(int radius, int xCenter, int yCenter, const Color &col
     const float x1 = xCenter + sqrt(radius * radius - (y - yCenter) * (y - yCenter));
     const float x2 = xCenter - sqrt(radius * radius - (y - yCenter) * (y - yCenter));
 
-    PutPixel(x1, y, color);
-    PutPixel(x2, y, color);
+    PutPixelSafe(x1, y, color);
+    PutPixelSafe(x2, y, color);
   }
 }
