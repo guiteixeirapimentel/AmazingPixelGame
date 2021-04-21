@@ -9,7 +9,7 @@ MapBackground::MapBackground()
     for(size_t i = 0; i < 100; i++)
     {
         const Vector2DF pos = { float(rand()%1500) -750, float(rand()%1500) - 750 };
-        const float distDepth = 2.0f;//float((rand() % 2) + 2) + 0.5f;
+        const float distDepth = float((rand() % 2) + 2) + 0.5f;
 
         Graphics::Color whiteColor = {255, 255, 255, 255};
 
@@ -42,9 +42,9 @@ void MapBackground::Update(Player& refPlayer, const Camera& refCam)
         {
             const Vector2DF pos = { float(rand()%800) - 400.0f, float(rand()%800) - 400.0f };
 
-            const float distDepth = float((rand() % 2) + 1) + 0.5f;
+            const float distDepth = float((rand() % 2) + 2) + 0.5f;
 
-            star.SetPos((playerPos - pos) - refCam.GetPosition()*(1.0f - 1.0f / distDepth), distDepth);
+            star.SetPos((playerPos - pos*distDepth) - refCam.GetPosition()*(1.0f - 1.0f / distDepth), distDepth);
         }
     }
 }
