@@ -18,7 +18,12 @@ public:
     void SetPosition(const Vector2DF& pos)
     {
         cPosition = pos;
-    } 
+    }
+
+    Vector2DF GetPosition() const
+    {
+        return cPosition;
+    }
 
 private:
     Graphics& cRefGFX;

@@ -14,7 +14,7 @@ public:
 
     void Render(const Camera& cam);
 
-    void Update(Player& refPlayer);
+    void Update(Player& refPlayer, const Camera& refCamera);
 private:
     std::vector<Star> cStars;
 };

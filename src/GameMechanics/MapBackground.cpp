@@ -28,22 +28,23 @@ void MapBackground::Render(const Camera& refCamera)
     }
 }
 
-void MapBackground::Update(Player& refPlayer)
+void MapBackground::Update(Player& refPlayer, const Camera& refCam)
 {
     const Vector2DF playerPos = refPlayer.GetPosition();
+    const Vector2DF camPos = refCam.GetPosition();
 
     for(Star& star : cStars)
     {
-        const Vector2DF starPos = star.GetPos();
+        const Vector2DF starPos = star.GetPos() + camPos*(1.0f - 1.0f / star.GetDepthDistance());
         const float dist = (starPos - playerPos).GetMagnitudeSquared();
 
         if(dist > 1000.0f*1000.0f)
         {
-            const Vector2DF pos = { float(rand()%800) -400.0f, float(rand()%800) - 400.0f };
+            const Vector2DF pos = { float(rand()%800) - 400.0f, float(rand()%800) - 400.0f };
 
-            const float distDepth = 1.0f;//float((rand() % 2) + 1) + 0.5f;
+            const float distDepth = float((rand() % 2) + 1) + 0.5f;
 
-            star.SetPos(playerPos - pos, distDepth);
+            star.SetPos((playerPos - pos) - refCam.GetPosition()*(1.0f - 1.0f / distDepth), distDepth);
         }
     }
 }

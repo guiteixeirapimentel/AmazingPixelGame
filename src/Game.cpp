@@ -67,7 +67,7 @@ void Game::Update()
 
     cCam.SetPosition(cPlayer.GetPosition());
 
-    cMapBackground.Update(cPlayer);
+    cMapBackground.Update(cPlayer, cCam);
 }
 
 void Game::Render()

@@ -14,7 +14,8 @@ public:
 
     void Render(Graphics& refGfx) const override;
 
-    Vector2DF GetPos() const {return cPosition;}
+    Vector2DF GetPos() const { return cPosition; }
+    float GetDepthDistance() const { return cDistanceDepth; }
 
 private:
     Vector2DF cPosition;
