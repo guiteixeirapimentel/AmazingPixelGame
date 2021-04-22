@@ -7,6 +7,7 @@
 #include "Game.h"
 #include "GFX/Graphics.h"
 #include "Controls/Keyboard.h"
+#include <fstream>
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>

@@ -11,6 +11,8 @@
 #include "GameMechanics/Camera/Camera.h"
 #include "GameMechanics/MapBackground.h"
 
+#include "GFX/Bitmap.h"
+
 #include <vector>
 
 class Game
@@ -35,6 +37,8 @@ private:
 
     Player cPlayer;
     std::vector<Enemy*> cEnemysPointer;
+
+    Bitmap cBmp;
 };
 
 #endif

@@ -9,7 +9,7 @@ class Enemy : public Drawable
 {
 public:
     Enemy(const Vector2DF &pos, const Vector2DF &vel, float dragCoeff = 0.93f) : cPosition(pos), cVelocity(vel), cAcceleration({0.0f, 0.0f}), cDragCoeff(dragCoeff), cPAI(nullptr) {}
-    ~Enemy() {}
+    virtual ~Enemy() {}
 
     virtual void Update(float dt = 1.0f / 60.0f)
     {

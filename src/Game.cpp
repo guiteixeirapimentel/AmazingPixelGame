@@ -5,7 +5,8 @@ Game::Game(Keyboard &kbd)
     : cKeyboard(kbd),
       cGraphics(800, 600),
       cPlayer({cGraphics.GetWidth() / 2.0f, cGraphics.GetHeight() / 2.0f}, {}),
-      cCam({400.0f, 300.0f}, cGraphics)
+      cCam({400.0f, 300.0f}, cGraphics),
+      cBmp("assets/Consolas13x24.bmp")
 {
     const int nEnemys = 1;
 
@@ -80,6 +81,8 @@ void Game::Render()
     {
         cCam.Render(*pEnemy);
     }
+
+    cBmp.Draw({int(cPlayer.GetPosition().cX), int(cPlayer.GetPosition().cY)}, cGraphics);
 }
 
 void Game::Input()

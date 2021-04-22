@@ -5,7 +5,7 @@ class EnemyAI
 {
 public:
     EnemyAI(class Enemy &refEnemy);
-    ~EnemyAI();
+    virtual ~EnemyAI();
 
     virtual void Act(class Player &refPlayer) = 0;
 

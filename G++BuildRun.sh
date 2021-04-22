@@ -27,7 +27,7 @@ cppFiles=$all_files
 outputFile="game"
 
 # command construction
-cmd="g++ $cppFiles -o $outputFile $compilingFlags $defines" 
+cmd="g++ $cppFiles -g -o $outputFile $compilingFlags $defines" 
 
 # command calling
 $cmd

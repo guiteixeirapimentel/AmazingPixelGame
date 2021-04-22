@@ -26,7 +26,7 @@ cppFiles=$all_files #"./main.cpp ./Character.cpp"
 outputFile="index.html"
 
 # command construction
-cmd="$emscDir -O3 $cppFiles -o $outputFile -s ASYNCIFY $defines" 
+cmd="$emscDir -O3 $cppFiles -o $outputFile -s ASYNCIFY $defines --preload-file assets" 
 
 # command calling
 $cmd
