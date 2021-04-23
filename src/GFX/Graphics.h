@@ -20,6 +20,16 @@ public:
         uint8_t g;
         uint8_t b;
         uint8_t a;
+
+        bool operator !=(const Color& rhs) const
+        {
+            return r != rhs.r || g != rhs.g || b != rhs.b || a != rhs.a;
+        }
+
+        bool operator ==(const Color& rhs) const
+        {
+            return !(r != rhs.r || g != rhs.g || b != rhs.b || a != rhs.a);
+        }
     };
 
 public:
