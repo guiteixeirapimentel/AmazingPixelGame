@@ -66,3 +66,27 @@ void Bitmap::Draw(const Vector2DI& pos, Graphics& refGfx) const
 		}
 	}
 }
+
+void Bitmap::DrawCropped(
+      const Vector2DI& pos, 
+      const Vector2DI& initPoint,
+      const Vector2DI& endPoint, 
+      Graphics& refGfx
+   ) const
+{
+	const int widthCropped = endPoint.cX - initPoint.cX;
+	const int heightCropped = endPoint.cY - initPoint.cY;
+
+	const int yStart = std::max<int>( -pos.cY, 0 );
+	const int xStart = std::max<int>( -pos.cX, 0 );
+	const int yEnd = std::min<int>( refGfx.GetHeight() - pos.cY, heightCropped );
+	const int xEnd = std::min<int>( refGfx.GetWidth() - pos.cX, widthCropped );
+
+	for(int y = yStart; y < yEnd; y++)
+	{
+		for(int x = xStart; x < xEnd; x++)
+		{
+			refGfx.PutPixel(x+pos.cX, y+pos.cY, cPPixelData[x+ initPoint.cX + (y+ initPoint.cY)*cWidth]);
+		}
+	}
+}

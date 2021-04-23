@@ -10,9 +10,15 @@ public:
    Bitmap(const std::string &filename);
    ~Bitmap();
 
-   void Draw(const Vector2DI& pos, Graphics &refGfx) const;
+   virtual void Draw(const Vector2DI& pos, Graphics &refGfx) const;
+   virtual void DrawCropped(
+      const Vector2DI& pos, 
+      const Vector2DI& initPoint,
+      const Vector2DI& endPoint, 
+      Graphics& refGfx
+   ) const;
 
-private:
+protected:
    int cWidth;
    int cHeight;
 
