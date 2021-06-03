@@ -1,14 +1,19 @@
 #include "Game.h"
 #include <iostream>
+#include <chrono>
 
 Game::Game(Keyboard &kbd)
     : cKeyboard(kbd),
       cGraphics(800, 600),
       cPlayer({cGraphics.GetWidth() / 2.0f, cGraphics.GetHeight() / 2.0f}, {}),
       cCam({400.0f, 300.0f}, cGraphics),
-      cFont("assets/Consolas13x24.bmp", 13, 24)
+      cFont("assets/Consolas13x24.bmp", 13, 24),
+      cScore(0),
+      cStartTime(std::chrono::duration_cast<std::chrono::milliseconds>(
+                     std::chrono::system_clock::now().time_since_epoch())
+                     .count())
 {
-    const int nEnemys = 1;
+    const int nEnemys = 10;
 
     for (int i = 0; i < nEnemys; i++)
     {
@@ -52,6 +57,11 @@ void Game::Tick()
 
 void Game::Update()
 {
+    cScore = std::chrono::duration_cast<std::chrono::milliseconds>(
+                 std::chrono::system_clock::now().time_since_epoch())
+                 .count() -
+             cStartTime;
+
     for (Enemy *pEnemy : cEnemysPointer)
     {
         pEnemy->Act(cPlayer);
@@ -60,7 +70,10 @@ void Game::Update()
 
         if (pEnemy->IsColliding(cPlayer))
         {
-            //cPlayer.ResetPlayer({400.0f, 400.0f});
+            cPlayer.ResetPlayer({0.0f, 0.0f});
+            cStartTime = std::chrono::duration_cast<std::chrono::milliseconds>(
+                             std::chrono::system_clock::now().time_since_epoch())
+                             .count();
         }
     }
 
@@ -82,11 +95,7 @@ void Game::Render()
         cCam.Render(*pEnemy);
     }
 
-    cFont.DrawString(
-        {int(cPlayer.GetPosition().cX), int(cPlayer.GetPosition().cY)},
-        "Testeee",
-        {255, 255, 255, 255},
-        cGraphics);
+    cFont.DrawString({0, 0}, "Score: " + std::to_string(cScore), {255, 255, 255, 255}, cGraphics);
 }
 
 void Game::Input()

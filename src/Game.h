@@ -39,6 +39,10 @@ private:
     std::vector<Enemy*> cEnemysPointer;
 
     Font cFont;
+
+    int cScore;
+
+    int cStartTime;
 };
 
 #endif
