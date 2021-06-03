@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.imgur.com/o7EVxwm.png" alt="Project logo"></a>
+ <img width=200px height=200px src="https://i.imgur.com/jgKkg50.png" alt="Project logo"></a>
 </p>
 
 <h3 align="center">Amazing Pixel Game</h3>
@@ -93,7 +93,7 @@ Give an example
 ## ⛏️ Built Using <a name = "built_using"></a>
 
 - [EMScripten](https://emscripten.org/) - Compiler to WebAssembly
-- [STL](https://www.libsdl.org/) - Simple quad renderer (Simple DirectMedia Layer)
+- [SDL](https://www.libsdl.org/) - Simple quad renderer (Simple DirectMedia Layer)
 - [C++](https://www.cplusplus.com/) - Using C++11
 
 ## ✍️ Authors <a name = "authors"></a>
