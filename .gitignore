@@ -4,3 +4,8 @@ game
 index.html
 index.js
 index.wasm
+
+Makefile
+CMakeCache.txt
+cmake_install.cmake
+CMakeFiles/*
