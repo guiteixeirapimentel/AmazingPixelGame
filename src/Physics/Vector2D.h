@@ -31,6 +31,13 @@ public:
         return sqrt(GetMagnitudeSquared());
     }
 
+    Vector2D<T>& operator=(const Vector2D<T>& rhs)
+    {
+        cX = rhs.cX;
+        cY = rhs.cY;
+        return *this;
+    }
+
     Vector2D<T> operator+(const Vector2D<T> rhs) const
     {
         return {cX + rhs.cX, cY + rhs.cY};
