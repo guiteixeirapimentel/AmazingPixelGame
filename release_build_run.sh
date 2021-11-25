@@ -1,0 +1,1 @@
+source ./release_build.sh && ./game

@@ -1,0 +1,1 @@
+source ./debug_build.sh && ./game
