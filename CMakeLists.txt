@@ -24,6 +24,6 @@ add_executable(game ${SOURCES} ${GAMEMECHANICS} ${CONTROLSSOURCES} ${GFXSOURCES}
 
 find_package(SDL REQUIRED)
 include_directories(${SDL_INCLUDE_DIRS})
-target_link_libraries(game PRIVATE ${SDL_LIBRARIES})
+target_link_libraries(game PRIVATE SDL ${SDL_LIBRARIES})
 
 

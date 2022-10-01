@@ -1,19 +1,11 @@
 #ifndef GAME_H
 #define GAME_H
+#include <memory>
+
 #include "GFX/Graphics.h"
 #include "Controls/Keyboard.h"
 
-#include "GameMechanics/Player.h"
-#include "GameMechanics/Enemy.h"
-#include "GameMechanics/RadiiEnemy.h"
-#include "GameMechanics/PlateEnemy.h"
-
-#include "GameMechanics/Camera/Camera.h"
-#include "GameMechanics/MapBackground.h"
-
-#include "GFX/Font.h"
-
-#include <vector>
+class GameState;
 
 class Game
 {
@@ -23,6 +15,8 @@ public:
 
     void Tick();
 
+    void SetNextGameState(std::unique_ptr<GameState>&& newGameState);
+
 private:
     void Update();
     void Render();
@@ -31,18 +25,8 @@ private:
 private:
     Graphics cGraphics;
     Keyboard& cKeyboard;
-    Camera cCam;
 
-    MapBackground cMapBackground;
-
-    Player cPlayer;
-    std::vector<Enemy*> cEnemysPointer;
-
-    Font cFont;
-
-    int cScore;
-
-    int cStartTime;
+    std::unique_ptr<GameState> cPtrGameState;
 };
 
 #endif
